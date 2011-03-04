@@ -19,7 +19,7 @@ EDITOR=vim
 VISUAL=gvim
 
 [ -f $HOME/sh/aliases ] && . $HOME/sh/aliases
-[ -f $HOME/sh/localaliases ] && . $HOME/sh/localaliases
+[ -f $HOME/.localaliases ] && . $HOME/.localaliases
 [ -f $HOME/sh/pathconf ] && . $HOME/sh/pathconf
 
 # control bash history

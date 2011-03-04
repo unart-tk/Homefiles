@@ -20,7 +20,7 @@ for dir in "$dotfiles"/*files; do
   [ -d "$dir" ] && {
     for f in "$dir"/*; do
             fn=$(basename $f)
-            mv $HOME/.$fn $backup/$fn
+            [ -e $HOME/.$fn ] && mv $HOME/.$fn $backup/$fn
             ln -s $f $HOME/.$fn
     done
 }

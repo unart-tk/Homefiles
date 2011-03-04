@@ -5,8 +5,10 @@ alias lss='ls -GathorF'
 alias sl='ls'
 alias sls='ls'
 alias lsl='ls'
-alias xclone="git clone `xclip -o`"
-alias xget="wget `xclip -o`"
+
+xclone () { git clone `xclip -o`; }
+xget () { wget `xclip -o`; }
+
 
 alias chmox="chmod 0755"
 
