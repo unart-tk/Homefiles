@@ -1,0 +1,8 @@
+#source $HOME/.byobu/profile
+#
+#
+escape ^ff
+
+hardstatus "off"
+
+#shell "/usr/bin/zsh"

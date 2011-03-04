@@ -1,8 +1,9 @@
-Shellconfig
+Homefiles
 ===========
 
-Contains dotfiles that configures tools on the command line:
 
-	shell - 	Dotfiles for bash and zsh
+link2home.sh:  
 
-	steroidshell - 	Dotfiles for screen, tmux, and anything that make you fly
+links dirs like sh-conf into ~/sh/conf
+
+
