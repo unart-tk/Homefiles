@@ -1,27 +1,29 @@
 Homefiles
 ===========
 
+the folders containing dashes are interesting
 
-Scripts
--------
+simple dash: -
+--------------
+
+like 'sh-shellfiles' 
+
+    - link folder contents directly under ~/.
+    - link folder contents directly under ~/sh
+
+dot dirs: -dot-
+---------------
+like 'sh-dot-mydir'
+
+    - link folder contents  under ~/.mydir
+    - link folder contents  under ~/sh
+
+home dirs: -home-
+---------------
+like 'sh-home-mydir'
+
+    - link folder contents  under ~/mydir
+    - link folder contents  under ~/sh
 
 
 
-./link2home.sh: 
-
-    Run this script and setup files and folder in the form of sh-,  ... to their corresponding places in ~/ (~/sh, ~/bin, ...), and directly under ~/.
-
-    Run this script and setup files and folder in the form of -foo,  ... to their corresponding places in ~/ (~/foo ...), and directly under ~/.
-
-
-Folders
--------
-
-sbin-bin: Most important scripts, is linked to ~/bin/sbin
-inactive: Old stuff that isn't going to be linked.
-sh-xshellfines: Folders with various dotfiles for 3rd-party software.
-sh-shellfiles: Basic files of the Bash and Zsh shell
-
-
----
-this explanations are probably outdated before I press :w
