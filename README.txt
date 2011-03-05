@@ -5,23 +5,21 @@ Homefiles
 Scripts
 -------
 
-./dotfiles.sh: 
-
-    Run this script and all dotfiles shall be symbol-linked to ~/.
 
 
 ./link2home.sh: 
 
-    Run this script and setup files and folder in the form of sh-, bin-, ... to their corresponding places in ~/ (~/sh, ~/bin, ...)
+    Run this script and setup files and folder in the form of sh-,  ... to their corresponding places in ~/ (~/sh, ~/bin, ...), and directly under ~/.
+
+    Run this script and setup files and folder in the form of -foo,  ... to their corresponding places in ~/ (~/foo ...), and directly under ~/.
 
 
 Folders
 -------
 
-bin-sbin: Most important scripts, is linked to ~/bin/sbin
+sbin-bin: Most important scripts, is linked to ~/bin/sbin
 inactive: Old stuff that isn't going to be linked.
-sh-aliases: The file that is linked to ~/.aliases
-sh-dotfile: Folders with various dotfiles for 3rd-party software.
+sh-xshellfines: Folders with various dotfiles for 3rd-party software.
 sh-shellfiles: Basic files of the Bash and Zsh shell
 
 
