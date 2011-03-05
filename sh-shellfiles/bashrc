@@ -18,9 +18,11 @@ PS1="\[\e[36;1m\]\h:\[\e[32;1m\]\w\n>$ \[\e[0m\]"
 EDITOR=vim
 VISUAL=gvim
 
-[ -f $HOME/sh/aliases ] && . $HOME/sh/aliases
-[ -f $HOME/.localaliases ] && . $HOME/.localaliases
-[ -f $HOME/sh/pathconf ] && . $HOME/sh/pathconf
+[ -f $HOME/.aliases ] && . $HOME/.aliases
+[ -f $HOME/.profile ] && . $HOME/.profile
+
+[ -f $HOME/.aliases.local ] && . $HOME/.aliases.local
+[ -f $HOME/.profile.local ] && . $HOME/.profile.local
 
 # control bash history
 

@@ -11,7 +11,10 @@ PATH="/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin"
 PATH="$PATH:/opt/bin:/opt/local/bin"
 
 # $HOME
-export PATH="$PATH:$HOME/bin/sbin"
+PATH="$PATH:$HOME/sbin"
+
+
+export PATH
 
 
 

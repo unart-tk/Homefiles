@@ -35,3 +35,6 @@ done
 
 rm -f $HOME/.aliases
 ln -s $cwd/sh-aliases $HOME/.aliases
+
+rm -f $HOME/sbin
+ln -s $cwd/sbin $HOME/sbin

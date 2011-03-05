@@ -55,7 +55,6 @@
 
 shell=$HOME/shell
 
-[ -f ~/.profile ] && . ~/.profile
 [ -f ~/.bashrc ] && . ~/.bashrc
 [ -f /etc/bashrc ] && . /etc/bashrc
 
