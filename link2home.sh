@@ -26,7 +26,7 @@ for hf in $homefolders ; do
     
     # $hfp : /my/path/rc-dot-gnu
     for hfp in "$cwd"/$hf*; do
-        [ -e "$hfp" ] &&  { 
+        [ -e "$hfp" ] || continue 
             # hfbn: rc-dot-gnu
             hfbn=$(basename $hfp)
             # fatdir: dot-gnu
@@ -35,20 +35,9 @@ for hf in $homefolders ; do
             dir=$(echo $fatdir | sed "s/^.*-//g" )
             dotdir=$(echo "$hfbn" | perl -wnl -e 's/.*-dot-(\w*)$/$1/g and print $1;')
             homedir=$(echo "$hfbn" | perl -wnl -e 's/.*-home-(\w*)$/$1/g and print $1;')
-
-            # dotdir: rc-dot-ssh -> ~/.ssh
-            if [ ! "$dotdir" = '' ] ;then
-                if [ -e $HOME/.$dotdir ] ; then
-                    mv $HOME/.$dotdir $backup/
-                else
-                     mkdir -p $HOME/.$dotdir
-                fi
-                if [ -e $HOME/$hf/$dotdir ] ; then
-                    rm -rf $HOME/$hf/$dotdir
-                fi
-                ln -s $hfp $HOME/.$dotdir
-                ln -s $hfp $HOME/$hf/$dotdir
-            elif [ ! "$homedir" = '' ] ;then
+            
+            # homedir
+            if [ ! "$homedir" = '' ] ;then
                 if [ -e $HOME/$homedir ] ; then
                     mv $HOME/$homedir $backup/
                 else
@@ -60,15 +49,27 @@ for hf in $homefolders ; do
                 ln -s $hfp $HOME/$homedir
                 ln -s $hfp $HOME/$hf/$homedir
             else
-                for d in "$hfp"/*; do
-                    dn=$(basename $d)
-                    if [ -e $HOME/.$dn ] ; then
-                        mv $HOME/.$dn $backup/
+                for df in "$hfp"/*; do
+                    [ -e "$df" ] || continue
+                    dfn=$(basename $df)
+                # dotdir: rc-dot-ssh -> ~/.ssh
+                if [ ! "$dotdir" = '' ] ;then
+                    if [ -e $HOME/.$dotdir/$dfn ] ; then
+                       mv $HOME/.$dotdir/$dfn  $backup/
                     fi
-                    ln -s $d $HOME/.$dn
+                    if [ -d $HOME/.$dotdir ] ; then
+                        rm -f  $HOME/.$dotdir/$dfn
+                        ln -s $df $HOME/.$dotdir/$dfn
+                    fi
+                else
+                    if [ -e $HOME/.$dfn ] ; then
+                       mv $HOME/.$dfn  $backup/
+                    fi
+                       rm -f  $HOME/.$dfn
+                        ln -s $df $HOME/.$dfn
+                fi
                 done
             fi
-        }
     done
 done
 
