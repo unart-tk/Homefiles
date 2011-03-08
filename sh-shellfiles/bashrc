@@ -8,7 +8,18 @@
 #
 # ***
 
+[ -f $HOME/.aliases ] && . $HOME/.aliases
+[ -f $HOME/.profile ] && . $HOME/.profile
 
+[ -f $HOME/.aliases.local ] && . $HOME/.aliases.local
+[ -f $HOME/.profile.local ] && . $HOME/.profile.local
+
+# prevent overwriting files with:
+#   echo 'cool' > oops.txt
+#
+# to turn it of, use
+#   echo 'cool' >| oops.txt
+set -o noclobber
 
 # Set the PS1 prompt (with colors).
 # Based on http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
@@ -17,12 +28,6 @@ PS1="\[\e[36;1m\]\h:\[\e[32;1m\]\w\n>$ \[\e[0m\]"
 
 EDITOR=vim
 VISUAL=gvim
-
-[ -f $HOME/.aliases ] && . $HOME/.aliases
-[ -f $HOME/.profile ] && . $HOME/.profile
-
-[ -f $HOME/.aliases.local ] && . $HOME/.aliases.local
-[ -f $HOME/.profile.local ] && . $HOME/.profile.local
 
 # control bash history
 

@@ -6,48 +6,68 @@ cwd=`pwd`
 backup=$cwd/backup
 [ -d $backup ] || mkdir -p $backup
 
-dirs=" vi sh rc bin "
-# dotdir: 'my-dot-folder'
+homefolders=" vi sh rc bin "
+# subdir: my-dir
+subdir=
+# dotdir: 'my-dot-dir
 dotdir=
-# homedir: 'my-home-folder'
+# homedir: 'my-home-dir
 homedir=
 
-# dr: sh, dd: ./my/path/sh-mydir, ddnl: sh-mydir, ddn: mydir, dir:~/sh/mydir
-for dr in $dirs ; do
-    [ -d $HOME/$dr ] || mkdir $HOME/$dr
+linkhome(){
+    p=$1
+    dir=$2
+}
 
-    for dd in "$cwd"/$dr*; do
-        [ -e "$dd" ] &&  { 
-            ddnl=$(basename $dd)
-            ddn=$(echo $ddnl | sed "s/^$dr\-//g" )
-            dir=$HOME/$dr/$ddn
-            dot=$(echo "$ddnl" | perl -wnl -e 's/.*-dot-(\w*)$/$1/g and print $1;')
-            homedir=$(echo "$ddnl" | perl -wnl -e 's/.*-home-(\w*)$/$1/g and print $1;')
-            [ -d $dir ] || mkdir $dir
-            for d in "$dd"/*; do
-                [ -e "$d" ] &&  { 
+
+# hf: sh, dd: ./my/path/sh-mydir, hfbn: sh-mydir, ddn: mydir, dir:~/sh/mydir
+for hf in $homefolders ; do
+    [ -d $HOME/$hf ] || mkdir $HOME/$hf
+    
+    # $hfp : /my/path/rc-dot-gnu
+    for hfp in "$cwd"/$hf*; do
+        [ -e "$hfp" ] &&  { 
+            # hfbn: rc-dot-gnu
+            hfbn=$(basename $hfp)
+            # fatdir: dot-gnu
+            fatdir=$(echo $hfbn | sed "s/^$hf\-//g" )
+            # dir: gnu
+            dir=$(echo $fatdir | sed "s/^.*-//g" )
+            dotdir=$(echo "$hfbn" | perl -wnl -e 's/.*-dot-(\w*)$/$1/g and print $1;')
+            homedir=$(echo "$hfbn" | perl -wnl -e 's/.*-home-(\w*)$/$1/g and print $1;')
+
+            # dotdir: rc-dot-ssh -> ~/.ssh
+            if [ ! "$dotdir" = '' ] ;then
+                if [ -e $HOME/.$dotdir ] ; then
+                    mv $HOME/.$dotdir $backup/
+                else
+                     mkdir -p $HOME/.$dotdir
+                fi
+                if [ -e $HOME/$hf/$dotdir ] ; then
+                    rm -rf $HOME/$hf/$dotdir
+                fi
+                ln -s $hfp $HOME/.$dotdir
+                ln -s $hfp $HOME/$hf/$dotdir
+            elif [ ! "$homedir" = '' ] ;then
+                if [ -e $HOME/$homedir ] ; then
+                    mv $HOME/$homedir $backup/
+                else
+                     mkdir -p $HOME/$homedir
+                fi
+                if [ -e $HOME/$hf/$homedir ] ; then
+                    rm -rf $HOME/$hf/$homedir
+                fi
+                ln -s $hfp $HOME/$homedir
+                ln -s $hfp $HOME/$hf/$homedir
+            else
+                for d in "$hfp"/*; do
                     dn=$(basename $d)
-                    if [ ! "$dot" = '' ] ;then
-                        [ -e $HOME/.$dot ] && mkdir -p $HOME/.$dot
-                        [ -e $HOME/.$dot/$dn ] && {
-                            mv  $HOME/.$dot/$dn $backup/; }
-                        ln -s $d $HOME/.$dot/$dn
-                    elif [ ! "$homedir" = '' ] ;then
-                        [ -e $HOME/$homedir ] && {
-                            mv  $HOME/$homedir $backup/;}
-                        ln -s $dd $HOME/$homedir
-                    else
-                        # link to: ~/vi, ~/sh, ...
-                        [ -e $dir/$dn ] &&{
-                            mv $dir/$dn $backup/; }
-                        ln -s $d $dir/$dn
-                        # link to: ~/.
-                        [ -e $HOME/.$dn ] && {
-                            mv  $HOME/.$dn $backup/$dn ; }
-                        ln -s $d $HOME/.$dn
+                    if [ -e $HOME/.$dn ] ; then
+                        mv $HOME/.$dn $backup/
                     fi
-                }
-            done
+                    ln -s $d $HOME/.$dn
+                done
+            fi
         }
     done
 done

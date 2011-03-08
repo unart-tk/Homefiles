@@ -1,7 +1,7 @@
 #source $HOME/.byobu/profile
 #
 #
-escape ^ff
+escape ^gg
 
 hardstatus "off"
 
