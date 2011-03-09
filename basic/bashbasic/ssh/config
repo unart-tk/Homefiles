@@ -1,0 +1,53 @@
+Host winbox
+    HostName winbox.org
+    Port 22
+    User Administrator
+Host intraserv
+    HostName intraserv.org
+    IdentityFile ~/.ssh/id_rsa_intraserv
+    PasswordAuthentication no
+    Port 22
+    User ben
+Host joyent
+    HostName bay.joyent.us
+    IdentityFile ~/.ssh/id_rsa_joyent
+    PasswordAuthentication no
+    Port 22
+    User picnic
+Host bay.joyent.us
+    HostName bay.joyent.us
+    IdentityFile ~/.ssh/id_rsa_joyent
+    PasswordAuthentication no
+    Port 22
+    User picnic
+Host harlekuin
+Host harlekuin
+    HostName harlekuin.org
+    IdentityFile ~/.ssh/id_rsa_harlekuin
+    PasswordAuthentication no
+    Port 22
+    User bandu
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    PasswordAuthentication no
+    Port 22
+    User git
+Host lekuin.sourcerepo.com
+    HostName lekuin.sourcerepo.com
+    IdentityFile ~/.ssh/id_rsa_srepo
+    PasswordAuthentication no
+    Port 22
+    User git
+Host lekuin.indefero.net
+    HostName lekuin.indefero.net
+    IdentityFile ~/.ssh/id_rsa_indefero
+    PasswordAuthentication no
+    Port 22
+    User git
+Host leakinserv.org
+    HostName leakinserv.org
+    IdentityFile ~/.ssh/id_rsa_leakinserv
+    PasswordAuthentication no
+    Port 22
+    User ben
