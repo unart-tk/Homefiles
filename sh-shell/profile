@@ -1,0 +1,20 @@
+# .profile
+# ========
+#
+
+
+# /usr PATH
+PATH="/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin"
+
+
+# /opt
+PATH="$PATH:/opt/bin:/opt/local/bin"
+
+# $HOME
+PATH="$PATH:$HOME/sbin"
+
+
+export PATH
+
+
+

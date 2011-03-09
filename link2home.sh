@@ -66,7 +66,10 @@ for hf in $homefolders ; do
                        mv $HOME/.$dfn  $backup/
                     fi
                        rm -f  $HOME/.$dfn
-                        ln -s $df $HOME/.$dfn
+                       ln -s $df $HOME/.$dfn
+
+                       rm -rf  $HOME/$hf/$fatdir
+                       ln -s $hfp $HOME/$hf/$fatdir
                 fi
                 done
             fi
