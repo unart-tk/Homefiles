@@ -1,9 +1,0 @@
-dual screen with xmonad on ubuntu
-=================================
-
-	05-10-2010, Ben <ben@leakin.org>
-	setup, instructions
-
--------------------------------------
-
-xrandr --output LVDS --left-of DVI-0
