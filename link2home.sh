@@ -49,6 +49,10 @@ for hf in $homefolders ; do
                 ln -s $hfp $HOME/$homedir
                 ln -s $hfp $HOME/$hf/$homedir
             else
+               [ -f $hfp ] && { # if its a file for ~/.file
+                    rm -f $HOME/.$fatdir; 
+                    ln -s $hfp $HOME/.$fatdir; 
+                }
                 for df in "$hfp"/*; do
                     [ -e "$df" ] || continue
                     dfn=$(basename $df)
