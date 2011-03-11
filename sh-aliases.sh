@@ -1,22 +1,15 @@
-## Common Aliases and Oneliners
-## ============================
-##
-##     (c) 2011 Ben, untar.org
-##
+alias l='ls'
+alias s='ls'
+alias sls='ls'
 
-alias slrn="slrn -n"
-alias man='LC_ALL=C LANG=C man'
+#alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -al'
 alias ls='ls --color=auto '
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
-#if [[ $HOSTNAME == "kamna" ]] {
-#	alias emacs='emacs -l ~/.emacs.kamna'
-#}	
 
-# alias	=clear
 
 #chpwd() {
 #     [[ -t 1 ]] || return
@@ -30,26 +23,9 @@ alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/py
 #chpwd
 
 
-# set platform (win, linux, ...)
-platform='unknown' 
-unamestr=$(uname)
-platform=''
-if [ "$unamestr" = 'Darwin' ]; then
-	platform='darwin'
-fi
-
-
-
 # grep
 alias glir='grep -lir'
 
-# gvim
-
-if [ "$platform" = 'darwin' ]; then
-	alias gvim='mvim --servername GVIM --remote'
-	alias safari='/Applications/Safari.app/Contents/MacOS/Safari'
-	alias browser='safari'
-fi
 
 # less
 
@@ -88,7 +64,3 @@ alias ow="vim ~/kit/Worklog/`date +%Y-%m-%d`.txt"
 alias oaliases="vim ~/bin/aliases"
 
 
-# abbrevs
-alias l='ls'
-alias s='ls'
-alias sls='ls'
