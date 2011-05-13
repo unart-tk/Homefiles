@@ -17,3 +17,8 @@ y
 import glob
 d
 y
+d = {"server":"mpilgrim", "database":"master"} 
+d
+d.get('server',default)
+d.get('server','master')
+y

@@ -37,18 +37,18 @@
 
 #gvim
 "wmctrl -a GVIM"
-    m:0x40 + c:55
+    m:0x2040 + c:55
     Mod4 + v 
 
 #Terminal
 "wmctrl -a Terminal"
-    m:0x40 + c:28
+    m:0x2040 + c:28
     Mod4 + t 
 
 #urxvt
 "wmctrl -a urxvt"
-    m:0x40 + c:27
-    Mod4 + r 
+    m:0x8 + c:27
+    Alt + r 
 
 #Filebrowser
 "wmctrl -a 'File Browser'"
@@ -57,13 +57,13 @@
 
 #Slickedit
 "wmctrl -a 'SlickEdit'"
-    m:0x40 + c:26
-    Mod4 + e 
+    m:0x8 + c:26
+    Alt + e 
 
 #Pentadactyl
 "wmctrl -a Pentadactyl"
-    m:0x40 + c:41
-    Mod4 + f 
+    m:0x8 + c:41
+    Alt + f 
 
 #
 # End of xbindkeys configuration

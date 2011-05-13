@@ -46,12 +46,14 @@ for hf in $homefolders ; do
                 if [ -e $HOME/$hf/$homedir ] ; then
                     rm -rf $HOME/$hf/$homedir
                 fi
-                ln -s $hfp $HOME/$homedir
+#                ln -s $hfp $HOME/$homedir
                 ln -s $hfp $HOME/$hf/$homedir
             else
                [ -f $hfp ] && { # if its a file for ~/.file
                     rm -f $HOME/.$fatdir; 
                     ln -s $hfp $HOME/.$fatdir; 
+                    rm -rf  $HOME/$hf/$dir
+                    ln -s $hfp $HOME/$hf/$dir
                 }
                 for df in "$hfp"/*; do
                     [ -e "$df" ] || continue
@@ -61,10 +63,11 @@ for hf in $homefolders ; do
                     if [ -e $HOME/.$dotdir/$dfn ] ; then
                        mv $HOME/.$dotdir/$dfn  $backup/
                     fi
-                    if [ -d $HOME/.$dotdir ] ; then
-                        rm -f  $HOME/.$dotdir/$dfn
-                        ln -s $df $HOME/.$dotdir/$dfn
-                    fi
+                    [ -d $HOME/.$dotdir ] || mkdir $HOME/.$dotdir
+                    rm -f  $HOME/.$dotdir/$dfn
+                    ln -s $df $HOME/.$dotdir/$dfn
+                    rm -rf  $HOME/$hf/$dir
+                    ln -s $hfp $HOME/$hf/$dir
                 else
                     if [ -e $HOME/.$dfn ] ; then
                        mv $HOME/.$dfn  $backup/

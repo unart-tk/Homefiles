@@ -17,4 +17,5 @@ PATH="$PATH:$HOME/sbin"
 export PATH
 
 
-
+export JAVA_HOME='/usr/lib/jvm/java-6-openjdk'
+#export JAVA_HOME='/usr/lib/jvm/java-6-sun'
