@@ -1,2 +1,4 @@
 set hintkeys='wazesxrdcfghijmok,pl.;'
+set defsearch='duckduckgo'
+set maxitems=5
 nnoremap a       <Down>

@@ -1,9 +1,19 @@
 # I'm not a huge fan of aliases, but for simple argumentless shortcuts, they are ok. Also for in-bash commands
 
 alias initbash='source ~/.bashrc'
+
+alias d='dirs -v'
 alias l='ls'
 alias s='ls'
 alias sls='ls'
+# ped : a sed in perl
+alias ped='perl -i.bak -npe'
+
+alias pop='popd'
+alias push='pushd'
+alias stack='dirs -l'
+
+alias cls='clear'
 
 alias ll='ls -al'
 
