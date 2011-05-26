@@ -1,85 +1,23 @@
 #!/bin/sh
-set -e
-set -u
 
-cwd=`pwd`
-backup=$cwd/backup
-[ -d $backup ] || mkdir -p $backup
+[ -d 'backup' ] || mkdir 'backup'
 
-homefolders=" vi sh rc bin "
-# subdir: my-dir
-subdir=
-# dotdir: 'my-dot-dir
-dotdir=
-# homedir: 'my-home-dir
-homedir=
+[ -e $HOME/.aliases ] && mv $HOME/.aliases backup
+ln -s `pwd`/aliases $HOME/.aliases
 
-linkhome(){
-    p=$1
-    dir=$2
-}
+for f in shell/*; do
+	fn=$(basename $f)
+	[ -e $HOME/$fn  ]  && {
+		[ -e $HOME/.$fn ] && mv $HOME/.$fn backup/
+		ln -s `pwd`/$f $HOME/.$fn
+        }
+done
 
-
-# hf: sh, dd: ./my/path/sh-mydir, hfbn: sh-mydir, ddn: mydir, dir:~/sh/mydir
-for hf in $homefolders ; do
-    [ -d $HOME/$hf ] || mkdir $HOME/$hf
-    
-    # $hfp : /my/path/rc-dot-gnu
-    for hfp in "$cwd"/$hf*; do
-        [ -e "$hfp" ] || continue 
-            # hfbn: rc-dot-gnu
-            hfbn=$(basename $hfp)
-            # fatdir: dot-gnu
-            fatdir=$(echo $hfbn | sed "s/^$hf\-//g" )
-            # dir: gnu
-            dir=$(echo $fatdir | sed "s/^.*-//g" )
-            dotdir=$(echo "$hfbn" | perl -wnl -e 's/.*-dot-(\w*)$/$1/g and print $1;')
-            homedir=$(echo "$hfbn" | perl -wnl -e 's/.*-home-(\w*)$/$1/g and print $1;')
-            
-            # homedir
-            if [ ! "$homedir" = '' ] ;then
-                if [ -e $HOME/$homedir ] ; then
-                    mv $HOME/$homedir $backup/
-                else
-                     mkdir -p $HOME/$homedir
-                fi
-                if [ -e $HOME/$hf/$homedir ] ; then
-                    rm -rf $HOME/$hf/$homedir
-                fi
-#                ln -s $hfp $HOME/$homedir
-                ln -s $hfp $HOME/$hf/$homedir
-            else
-               [ -f $hfp ] && { # if its a file for ~/.file
-                    rm -f $HOME/.$fatdir; 
-                    ln -s $hfp $HOME/.$fatdir; 
-                    rm -rf  $HOME/$hf/$dir
-                    ln -s $hfp $HOME/$hf/$dir
-                }
-                for df in "$hfp"/*; do
-                    [ -e "$df" ] || continue
-                    dfn=$(basename $df)
-                # dotdir: rc-dot-ssh -> ~/.ssh
-                if [ ! "$dotdir" = '' ] ;then
-                    if [ -e $HOME/.$dotdir/$dfn ] ; then
-                       mv $HOME/.$dotdir/$dfn  $backup/
-                    fi
-                    [ -d $HOME/.$dotdir ] || mkdir $HOME/.$dotdir
-                    rm -f  $HOME/.$dotdir/$dfn
-                    ln -s $df $HOME/.$dotdir/$dfn
-                    rm -rf  $HOME/$hf/$dir
-                    ln -s $hfp $HOME/$hf/$dir
-                else
-                    if [ -e $HOME/.$dfn ] ; then
-                       mv $HOME/.$dfn  $backup/
-                    fi
-                       rm -f  $HOME/.$dfn
-                       ln -s $df $HOME/.$dfn
-
-                       rm -rf  $HOME/$hf/$fatdir
-                       ln -s $hfp $HOME/$hf/$fatdir
-                fi
-                done
-            fi
-    done
+for f in xshell/*; do
+	fn=$(basename $f)
+	[ -e $HOME/$fn  ]  && {
+		[ -e $HOME/.$fn ] && mv $HOME/.$fn backup/
+		ln -s `pwd`/$f $HOME/.$fn
+        }
 done
 

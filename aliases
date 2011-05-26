@@ -1,0 +1,63 @@
+# I'm not a huge fan of aliases, but for simple argumentless shortcuts, they are ok. Also for in-bash commands
+
+alias initbash='source ~/.bashrc'
+
+alias d='dirs -v'
+alias l='ls'
+alias s='ls'
+alias sls='ls'
+# ped : a sed in perl
+alias ped='perl -i.bak -npe'
+
+alias pop='popd'
+alias push='pushd'
+alias stack='dirs -l'
+
+alias cls='clear'
+
+alias ll='ls -al'
+
+# not workee on mac
+#alias ls='ls --color=auto '
+
+# grep
+alias glir='grep -lir'
+
+
+# less
+
+alias less='/usr/share/vim/vim72/macros/less.sh'
+
+# start firefox
+
+alias ff='firefox'
+alias cp='cp -R'
+alias c='cd '
+alias home='cd ~'
+#alias lsl="echo shit"
+alias ..='cd ..'
+alias rm='rm -i'
+alias shortdate='date +"%Y-%m-%d"'
+alias vi='vim -c NERDTree'
+alias gvi='gvim --servername GVIM --remote-tab'
+#alias gvim="gvim 2> /dev/null"
+alias gvim='gvim --servername MIV --remote'
+alias tvim='gvim --servername localhost --remote-silent-tab 2>/dev/null'
+alias chmox='chmod 0755'
+alias vman='doc-vman'
+
+alias muindex='mu index --maildir ~/mail/inbox/'
+alias mufind='mu find -m ~/mail/inbox -c -l ~/mail/search' # -c: clearlinks, -l make links into ...
+alias muresults='mutt -f ~/mail/search/'
+
+# go to ...
+
+alias gow='pushd ~/kit/Worklog'
+alias gbin='pushd ~/bin'
+
+
+# open ...
+alias ow="vim ~/kit/Worklog/`date +%Y-%m-%d`.txt"
+alias oaliases="vim ~/bin/aliases"
+
+
